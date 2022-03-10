@@ -7,16 +7,17 @@ import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 
 const Home: NextPage = () => {
-    const typeEl = useRef<HTMLElement>(null);
-    const typed = useRef<HTMLElement>(null);
+    const typeEl = useRef<HTMLElement | null>(null);
 
     useEffect(() => {
         const options = {
-            strings: ['Oi!^500 eu sou o Willys^1000 :)'],
+            strings: ['Oi!^500 Eu sou o Willys^1000 :)'],
             typeSpeed: 50,
             backSpeed: 50
         };
-        typed.current = new Typed(typeEl.current, options);
+        if (typeEl.current !== null) {
+            const typed = new Typed(typeEl.current, options);
+        }
     }, []);
 
     return (
@@ -31,7 +32,7 @@ const Home: NextPage = () => {
                 <div className={styles.title}>
                     <span ref={typeEl}></span>
                 </div>
-                <br/>
+                <br />
                 <div className={styles.links}>
                     <a
                         target="_blank"
